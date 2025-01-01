@@ -49,7 +49,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 class AdvancedVoiceChatbot:
-    def __init__(self):
+    def _init_(self):
         self.recognizer = sr.Recognizer()
         self.tokenizer = RegexpTokenizer(r'\w+')
         self.stemmer = FrenchStemmer()
@@ -181,13 +181,13 @@ class AdvancedVoiceChatbot:
                 return text
                 
         except sr.WaitTimeoutError:
-            return "⚠️ Aucune parole détectée. Veuillez réessayer."
+            return "⚠ Aucune parole détectée. Veuillez réessayer."
         except sr.UnknownValueError:
-            return "⚠️ Désolé, je n'ai pas compris. Pourriez-vous répéter?"
+            return "⚠ Désolé, je n'ai pas compris. Pourriez-vous répéter?"
         except sr.RequestError:
-            return "⚠️ Service de reconnaissance vocale temporairement indisponible."
+            return "⚠ Service de reconnaissance vocale temporairement indisponible."
         except Exception as e:
-            return f"⚠️ Une erreur est survenue: {str(e)}"
+            return f"⚠ Une erreur est survenue: {str(e)}"
 
 def main():
     st.title("🤖 Assistant Vocal Intelligent")
@@ -195,7 +195,7 @@ def main():
     # Introduction
     st.markdown("""
         Je suis votre assistant virtuel intelligent. Je peux vous aider avec :
-        - 🗣️ Reconnaissance vocale en français
+        - 🗣 Reconnaissance vocale en français
         - ⏰ Information sur l'heure et la date
         - 💬 Conversation naturelle
     """)
@@ -232,7 +232,7 @@ def main():
         if st.button("🎤 Cliquez pour parler"):
             user_input = st.session_state.chatbot.transcribe_speech()
             
-            if not user_input.startswith("⚠️"):
+            if not user_input.startswith("⚠"):
                 st.session_state.messages.append({"role": "user", "content": user_input})
                 with st.chat_message("user"):
                     st.write(user_input)
@@ -245,5 +245,5 @@ def main():
             else:
                 st.error(user_input)
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     main()
